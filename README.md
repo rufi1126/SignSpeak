@@ -19,4 +19,4 @@ Anda dapat mencoba aplikasi ini langsung di smartphone atau browser Anda melalui
 👉 [https://signspeak-app-d8230.web.app](https://signspeak-app-d8230.web.app)
 
 ## 👤 Developer
-- **Fil** (Full-Stack AI Web Developer)
+- **Masruf** (Full-Stack AI Web Developer)

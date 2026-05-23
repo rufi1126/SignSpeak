@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignSpeak - Penerjemah Bahasa Isyarat</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-900 text-white font-sans min-h-screen flex flex-col">
+
+    <nav class="bg-slate-800 p-4 border-b border-slate-700">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <h1 class="text-2xl font-bold tracking-wider text-teal-400">👋 SignSpeak</h1>
+            <div class="flex flex-wrap justify-center gap-4 sm:space-x-4">
+                <a href="index.html" class="text-teal-400 font-semibold text-sm md:text-base">Penerjemah</a>
+                <a href="belajar.html" class="text-slate-300 hover:text-white text-sm md:text-base">Mode Belajar</a>
+                <a href="riwayat.html" class="text-slate-300 hover:text-white text-sm md:text-base">Riwayat</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto flex-1 my-8 p-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 flex flex-col items-center justify-center">
+            <h2 class="text-lg font-semibold mb-4 text-slate-300">Kamera Deteksi</h2>
+            
+            <div class="relative w-full max-w-md aspect-video bg-black rounded-xl overflow-hidden shadow-inner border border-slate-600">
+                <video id="webcam" class="absolute inset-0 w-full h-full object-cover scale-x-[-1]" autoplay playsinline muted></video>
+                <canvas id="output_canvas" class="absolute inset-0 w-full h-full object-cover z-10 pointer-events-none"></canvas>
+            </div>
+
+            <div class="mt-6 space-x-4">
+                <button id="btn-start" class="bg-teal-500 hover:bg-teal-600 px-6 py-2 rounded-lg font-semibold shadow-md cursor-pointer transition">Nyalakan Kamera</button>
+                <button id="btn-stop" class="bg-rose-500 hover:bg-rose-600 px-6 py-2 rounded-lg font-semibold shadow-md cursor-pointer hidden transition">Matikan</button>
+            </div>
+        </div>
+
+        <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 flex flex-col justify-between">
+            <div>
+                <h2 class="text-lg font-semibold mb-4 text-slate-300">Hasil Terjemahan</h2>
+                <div class="bg-slate-900 p-6 rounded-xl min-h-[150px] border border-slate-700 flex items-center justify-center">
+                    <p id="translation-text" class="text-3xl font-bold text-center text-teal-300 tracking-wide">Kamera belum aktif...</p>
+                </div>
+            </div>
+
+            <div class="mt-6 flex flex-col sm:flex-row gap-4">
+                <button id="btn-speak" class="flex-1 bg-slate-700 hover:bg-slate-600 py-3 rounded-xl font-medium cursor-pointer transition text-center">🔊 Dengarkan Suara</button>
+                <button id="btn-save" class="flex-1 bg-gradient-to-r from-teal-500 to-emerald-500 py-3 rounded-xl font-bold shadow-lg cursor-pointer transition text-center">💾 Simpan ke Riwayat</button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+    <script src="src/js/camera.js"></script>
+</body>
+</html>

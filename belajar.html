@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignSpeak - Mode Belajar</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        body {
+            background-color: #0f172a; /* Warna navy gelap serasi dengan dashboard lo */
+        }
+        /* Memastikan Canvas digambar tepat di atas video */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 640px;
+            aspect-ratio: 4/3;
+            background-color: #1e293b;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        #webcam {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scaleX(-1); /* Efek mirror kamera */
+        }
+        #output_canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="text-slate-200 font-sans min-h-screen flex flex-col">
+
+    <header class="w-full py-4 px-6 bg-slate-900 border-b border-slate-800 flex justify-between items-center shadow-lg">
+        <div class="flex items-center gap-2">
+            <span class="text-2xl">👋</span>
+            <h1 class="text-xl font-bold text-teal-400 tracking-wider">SignSpeak</h1>
+        </div>
+        <nav class="flex gap-6 text-sm font-medium">
+            <a href="index.html" class="text-slate-400 hover:text-white transition">Penerjemah</a>
+            <a href="belajar.html" class="text-teal-400 border-b-2 border-teal-400 pb-1">Mode Belajar</a>
+            <a href="riwayat.html" class="text-slate-400 hover:text-white transition">Riwayat</a>
+        </nav>
+    </header>
+
+    <main class="flex-1 max-w-6xl w-full mx-auto p-4 md:p-8 flex flex-col md:flex-row gap-6 items-stretch justify-center">
+        
+        <div class="flex-1 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl flex flex-col justify-between items-center text-center">
+            <div>
+                <h3 class="text-slate-400 uppercase tracking-widest text-xs font-semibold mb-2">Tantangan Gerakan</h3>
+                <div class="h-px w-16 bg-teal-500 mx-auto mb-6"></div>
+            </div>
+            
+            <div class="my-auto py-8">
+                <h1 id="target-text" class="text-4xl md:text-5xl font-black text-white transition-all duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                    Klik Mulai Belajar
+                </h1>
+            </div>
+
+            <div class="w-full bg-slate-950 border border-slate-800/60 rounded-xl p-4 mt-4">
+                <p id="status-text" class="text-teal-400 font-medium text-lg">Kamera belum aktif...</p>
+            </div>
+        </div>
+
+        <div class="flex-1 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl flex flex-col items-center justify-between">
+            <h3 class="text-slate-400 font-semibold mb-4 text-sm tracking-wide">Kamera Validasi AI</h3>
+            
+            <div class="video-wrapper border border-slate-700/50 shadow-inner">
+                <video id="webcam" autoplay playsinline class="hidden"></video>
+                <canvas id="output_canvas"></canvas>
+                <div id="camera-placeholder" class="absolute inset-0 flex flex-col items-center justify-center text-slate-500 gap-2">
+                    <span class="text-4xl">📷</span>
+                    <p class="text-xs">Kamera Off</p>
+                </div>
+            </div>
+
+            <div class="w-full flex gap-3 mt-6">
+                <button id="btn-start" class="flex-1 bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold py-3 px-6 rounded-xl shadow-lg shadow-teal-500/20 transition-all active:scale-[0.98] cursor-pointer">
+                    🚀 Mulai Belajar
+                </button>
+                <button id="btn-stop" class="flex-1 bg-rose-600 hover:bg-rose-500 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-rose-600/20 transition-all active:scale-[0.98] hidden cursor-pointer">
+                    🛑 Matikan Kamera
+                </button>
+                <button id="btn-next" class="bg-slate-800 hover:bg-slate-700 text-slate-300 border border-slate-700 px-4 rounded-xl transition active:scale-[0.98] cursor-pointer" title="Lewati Tantangan">
+                    Skip ➡️
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    
+    <script src="src/js/belajar.js"></script>
+
+    <script>
+        // Sedikit tambahan UI feedback untuk menyembunyikan placeholder saat kamera aktif
+        const startBtn = document.getElementById('btn-start');
+        const stopBtn = document.getElementById('btn-stop');
+        const placeholder = document.getElementById('camera-placeholder');
+        const v = document.getElementById('webcam');
+
+        if(startBtn) {
+            startBtn.addEventListener('click', () => {
+                placeholder.classList.add('hidden');
+                v.classList.remove('hidden');
+            });
+        }
+        if(stopBtn) {
+            stopBtn.addEventListener('click', () => {
+                placeholder.classList.remove('hidden');
+                v.classList.add('hidden');
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignSpeak - Riwayat Terjemahan</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-slate-900 text-white font-sans min-h-screen flex flex-col">
+
+    <nav class="bg-slate-800 p-4 border-b border-slate-700">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <h1 class="text-2xl font-bold tracking-wider text-teal-400">👋 SignSpeak</h1>
+            <div class="flex flex-wrap justify-center gap-4 sm:space-x-4">
+                <a href="index.html" class="text-slate-300 hover:text-white text-sm md:text-base">Penerjemah</a>
+                <a href="belajar.html" class="text-slate-300 hover:text-white text-sm md:text-base">Mode Belajar</a>
+                <a href="riwayat.html" class="text-teal-400 font-semibold text-sm md:text-base">Riwayat</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto flex-1 my-8 p-4 max-w-4xl">
+        <div class="bg-slate-800 p-6 rounded-2xl border border-slate-700 shadow-xl">
+            
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+                <h2 class="text-xl font-bold text-teal-400 tracking-wide flex items-center gap-2">
+                    📜 Riwayat Hasil Terjemahan Cloud
+                </h2>
+                <a href="index.html" class="bg-slate-700 hover:bg-slate-600 text-sm px-4 py-2 rounded-xl font-medium transition shadow-md">
+                    ⬅ Kembali ke Kamera
+                </a>
+            </div>
+
+            <div class="overflow-x-auto rounded-xl border border-slate-700 bg-slate-950">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-900 text-teal-400 border-b border-slate-700 text-sm font-semibold tracking-wider">
+                            <th class="p-4 w-16 text-center">No</th>
+                            <th class="p-4">Hasil Isyarat Tangan</th>
+                            <th class="p-4">Waktu Simpan (WIB)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabel-riwayat" class="text-slate-300 divide-y divide-slate-800 text-sm md:text-base">
+                        <tr>
+                            <td colspan="3" class="p-8 text-center text-slate-500 italic animate-pulse">
+                                Memuat data dari Google Cloud Firestore...
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </main>
+
+    <script type="module" src="src/js/riwayat.js"></script>
+</body>
+</html>
